@@ -1,0 +1,26 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+# test client project
+before_install:
+  - docker build -t ymdarake/web-container-template -f ./client/Dockerfile.dev ./client
+
+# build fail with non 0 exit code.
+script:
+  - docker run -e CI=true ymdarake/web-container-template npm run test
+
+after_success:
+  # build images for production
+  - docker build -t ymdarake/web-container-template-client ./client
+  - docker build -t ymdarake/web-container-template-nginx ./nginx
+  - docker build -t ymdarake/web-container-template-server ./server
+  - docker build -t ymdarake/web-container-template-worker ./worker
+  # Log in to the docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push ymdarake/web-container-template-client
+  - docker push ymdarake/web-container-template-nginx
+  - docker push ymdarake/web-container-template-server
+  - docker push ymdarake/web-container-template-worker
