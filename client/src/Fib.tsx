@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 
 type Props = {};
-type CalculatedValue = { key: number; value: number };
+type CalculatedValue = { key: number; value: string };
 
 const Fib: FC<Props> = (props) => {
   const [seenIndexes, setSeenIndexes] = useState([]);
@@ -23,7 +23,7 @@ const Fib: FC<Props> = (props) => {
     setIndex(index);
   };
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIndex(parseInt(event.target.value));
+    setIndex(parseInt(event.target.value) || 0);
   };
 
   return (
@@ -38,7 +38,7 @@ const Fib: FC<Props> = (props) => {
       {seenIndexes.map(({ number }) => number).join(', ')}
 
       <h3>Calculated values:</h3>
-      {values.map(({ key, value }) => {
+      {Object.entries(values).map(([key, value]) => {
         return (
           <div key={key}>
             For index {key} I calculated {value}
