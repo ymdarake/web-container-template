@@ -7,7 +7,7 @@ services:
 before_install:
   - docker build -t ymdarake/web-container-template -f ./client/Dockerfile.dev ./client
 
-# build fail with non 0 exit code.
+# build fails with non 0 exit code.
 script:
   - docker run -e CI=true ymdarake/web-container-template npm run test
 
@@ -24,3 +24,15 @@ after_success:
   - docker push ymdarake/web-container-template-nginx
   - docker push ymdarake/web-container-template-server
   - docker push ymdarake/web-container-template-worker
+## Deploy to Elastic Beanstalk
+# deploy:
+#   provider: elasticbeanstalk
+#   region: 'ap-northeast-1'
+#   app: 'web-container-template'
+#   env: 'Web-container-template-env'
+#   bucket_name: 'elasticbeanstalk-ap-northeast-1-99999999999'
+#   bucket_path: 'web-container-template'
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
