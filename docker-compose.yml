@@ -1,0 +1,31 @@
+version: '3'
+services:
+  client:
+    image: 'ymdarake/web-container-template-client'
+    mem_limit: 128m
+    hostname: client
+  server:
+    image: 'ymdarake/web-container-template-server'
+    mem_limit: 128m
+    hostname: api
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
+  worker:
+    image: 'ymdarake/web-container-template-worker'
+    mem_limit: 128m
+    hostname: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+  nginx:
+    image: 'ymdarake/web-container-template-nginx'
+    mem_limit: 128m
+    hostname: nginx
+    ports:
+      - '80:80'
