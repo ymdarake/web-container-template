@@ -6,6 +6,7 @@ Template for building a multi-container web application.
 
 - k8s
   - Configuration files for Kubernetes
+    - NEED to `kubectl create secret generic pgpassword --from-literal PGPASSWORD=<replace_me>`
 - nginx
   - Minimum routing configuration
 - server
