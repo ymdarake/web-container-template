@@ -5,8 +5,17 @@ Template for building a multi-container web application.
 ## Containers
 
 - k8s
+
   - Configuration files for Kubernetes
-    - NEED to `kubectl create secret generic pgpassword --from-literal PGPASSWORD=<replace_me>`
+    - NEED to
+      - `kubectl create secret generic pgpassword --from-literal PGPASSWORD=<replace_me>`
+      - [ingress-nginx setup](https://kubernetes.github.io/ingress-nginx/deploy/#provider-specific-steps)
+        - local
+          - `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml`
+        - GCP (GKE)
+          - https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke
+        - https://kubernetes.io/docs/concepts/services-networking/ingress/
+
 - nginx
   - Minimum routing configuration
 - server
