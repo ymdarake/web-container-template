@@ -4,6 +4,8 @@ Template for building a multi-container web application.
 
 ## Containers
 
+- k8s
+  - Configuration files for Kubernetes
 - nginx
   - Minimum routing configuration
 - server
@@ -17,7 +19,3 @@ Template for building a multi-container web application.
   - React app in TypeScript
   - Hot reloading available
   - NGINX attached for content distribution in production build
-
-## Kubernetes Template
-
-Configuration files for Kubernetes are available at [https://github.com/ymdarake/web-container-template-k8s](https://github.com/ymdarake/web-container-template-k8s).
