@@ -15,6 +15,12 @@ Template for building a multi-container web application.
         - GCP (GKE)
           - https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke
         - https://kubernetes.io/docs/concepts/services-networking/ingress/
+  - [Configuring Local Dashboard](https://andrewlock.net/running-kubernetes-and-the-dashboard-with-docker-desktop/)
+    - `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml`
+    - `kubectl patch deployment kubernetes-dashboard -n kubernetes-dashboard --type 'json' -p '[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--enable-skip-login"}]'`
+    - `kubectl proxy`
+    - http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+      - shows Skip button
 
 - nginx
   - Minimum routing configuration
