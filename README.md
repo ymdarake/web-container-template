@@ -5,7 +5,7 @@ Template for building a multi-container web application.
 ## Containers
 
 - k8s
-
+  - Deploying template to GCP is available on [ymdarake/web-k8s-template](https://github.com/ymdarake/web-k8s-template)
   - Configuration files for Kubernetes
     - NEED to
       - `kubectl create secret generic pgpassword --from-literal PGPASSWORD=<replace_me>`
